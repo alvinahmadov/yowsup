@@ -1,6 +1,6 @@
 from consonance.protocol import WANoiseProtocol
 from consonance.streams.segmented.segmented import SegmentedStream
-from consonance.exceptions.handshake_failed_exception import HandshakeFailedException
+#from consonance.exceptions.handshake_failed_exception import HandshakeFailedException
 from consonance.config.client import ClientConfig
 from consonance.structs.keypair import KeyPair
 from consonance.structs.publickey import PublicKey
@@ -40,7 +40,7 @@ class WANoiseProtocolHandshakeWorker(threading.Thread):
         error = None
         try:
             self._protocol.start(self._stream, self._client_config, self._s, self._rs)
-        except HandshakeFailedException as e:
+        except Exception as e:
             error = e
 
         if self._finish_callback is not None:
