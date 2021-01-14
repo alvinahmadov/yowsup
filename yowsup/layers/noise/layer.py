@@ -92,12 +92,18 @@ class YowNoiseLayer(YowLayer):
 
             self._rs = remote_static
             yowsupenv = YowsupEnv.getCurrent()
+
+            version = yowsupenv.getVersion().split('.')
+            app_version = ""
+            if len(version) > 3:
+                app_version = ".".join(version[:3])
+
             client_config = ClientConfig(
                 username=username,
                 passive=passive,
                 useragent=UserAgentConfig(
                     platform=0,
-                    app_version=yowsupenv.getVersion(),
+                    app_version=app_version,
                     mcc=config.mcc or "000",
                     mnc=config.mnc or "000",
                     os_version=yowsupenv.getOSVersion(),
